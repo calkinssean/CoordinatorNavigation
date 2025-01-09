@@ -21,7 +21,7 @@ enum Sheet: String, Identifiable {
     var id: String { self.rawValue }
 }
 
-enum FullScreen: String, Identifiable {
+enum FullScreenCover: String, Identifiable {
     
     case fullScreenOne, fullScreenTwo
     
@@ -32,7 +32,7 @@ class Coordinator: ObservableObject {
     
     @Published var path = NavigationPath()
     @Published var sheet: Sheet?
-    @Published var fullScreen: FullScreen?
+    @Published var fullScreenCover: FullScreenCover?
     
     func push(_ page: Page) {
         path.append(page)
@@ -42,8 +42,8 @@ class Coordinator: ObservableObject {
         self.sheet = sheet
     }
     
-    func present(fullScreen: FullScreen) {
-        self.fullScreen = fullScreen
+    func present(fullScreenCover: FullScreenCover) {
+        self.fullScreenCover = fullScreenCover
     }
     
     func pop() {
@@ -58,12 +58,12 @@ class Coordinator: ObservableObject {
         self.sheet = nil
     }
     
-    func dismissFullScreen() {
-        self.fullScreen = nil
+    func dismissFullScreenCover() {
+        self.fullScreenCover = nil
     }
     
     @ViewBuilder
-    func build(page: Page) -> some View {
+    func build(_ page: Page) -> some View {
         switch page {
         case .pageOne: PageOne()
         case .pageTwo: PageTwo()
@@ -72,7 +72,7 @@ class Coordinator: ObservableObject {
     }
  
     @ViewBuilder
-    func buildSheet(sheet: Sheet) -> some View {
+    func build(sheet: Sheet) -> some View {
         switch sheet {
         case .sheetOne: SheetOne()
         case .sheetTwo: SheetTwo()
@@ -80,8 +80,8 @@ class Coordinator: ObservableObject {
     }
     
     @ViewBuilder
-    func buildFullScreen(fullScreen: FullScreen) -> some View {
-        switch fullScreen {
+    func build(fullScreenCover: FullScreenCover) -> some View {
+        switch fullScreenCover {
         case .fullScreenOne: FullScreenOne()
         case .fullScreenTwo: FullScreenTwo()
         }
