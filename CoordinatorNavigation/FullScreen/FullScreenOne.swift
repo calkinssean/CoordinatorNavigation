@@ -8,7 +8,14 @@
 import SwiftUI
 
 struct FullScreenOne: View {
+    
+    @EnvironmentObject private var coordinator: Coordinator
+    
     var body: some View {
-        Text("FullScreenOne")
+        List {
+            Button("Dismiss") {
+                coordinator.dismissFullScreenCover()
+            }
+        }.navigationTitle("Full Screen One")
     }
 }

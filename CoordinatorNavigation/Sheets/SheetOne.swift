@@ -8,7 +8,15 @@
 import SwiftUI
 
 struct SheetOne: View {
+    
+    @EnvironmentObject private var coordinator: Coordinator
+    
     var body: some View {
-        Text("Sheet One")
+        List {
+            Button("Dismiss") {
+                coordinator.dismissSheet()
+            }
+        }
+        .navigationTitle("Sheet One")
     }
 }

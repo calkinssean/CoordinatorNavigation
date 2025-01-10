@@ -16,14 +16,14 @@ enum Page: String, Identifiable {
 
 enum Sheet: String, Identifiable {
     
-    case sheetOne, sheetTwo
+    case sheetOne
     
     var id: String { self.rawValue }
 }
 
 enum FullScreenCover: String, Identifiable {
     
-    case fullScreenOne, fullScreenTwo
+    case fullScreenOne
     
     var id: String { self.rawValue }
 }
@@ -70,20 +70,25 @@ class Coordinator: ObservableObject {
         case .pageThree: PageThree()
         }
     }
- 
+    
     @ViewBuilder
     func build(sheet: Sheet) -> some View {
         switch sheet {
-        case .sheetOne: SheetOne()
-        case .sheetTwo: SheetTwo()
+        case .sheetOne:
+            NavigationStack {
+                SheetOne()
+            }
         }
     }
     
     @ViewBuilder
     func build(fullScreenCover: FullScreenCover) -> some View {
         switch fullScreenCover {
-        case .fullScreenOne: FullScreenOne()
-        case .fullScreenTwo: FullScreenTwo()
+        case .fullScreenOne:
+            NavigationStack {
+                FullScreenOne()
+            }
         }
     }
+    
 }

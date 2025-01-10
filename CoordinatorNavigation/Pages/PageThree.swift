@@ -8,7 +8,17 @@
 import SwiftUI
 
 struct PageThree: View {
+    
+    @EnvironmentObject private var coordinator: Coordinator
+    
     var body: some View {
-        Text("Page Three")
+        List {
+            Button("Pop") {
+                coordinator.pop()
+            }
+            Button("Pop To Root") {
+                coordinator.popToRoot()
+            }
+        }.navigationTitle("Page Three")
     }
 }

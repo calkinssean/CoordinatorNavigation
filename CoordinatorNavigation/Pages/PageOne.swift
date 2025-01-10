@@ -8,7 +8,20 @@
 import SwiftUI
 
 struct PageOne: View {
+    
+    @EnvironmentObject private var coordinator: Coordinator
+    
     var body: some View {
-        Text("Page One")
+        List {
+            Button("Go To Page Two") {
+               coordinator.push(.pageTwo)
+            }
+            Button("Present Sheet") {
+                coordinator.present(sheet: .sheetOne)
+            }
+            Button("Present Full Screen Sheet") {
+                coordinator.present(fullScreenCover: .fullScreenOne)
+            }
+        }.navigationTitle("Page One")
     }
 }
